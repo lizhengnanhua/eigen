@@ -4,4 +4,4 @@
 
 ## EigenCC
 
-[EigenCC](./cc)
+[EigenCC](./cc) confidential computation framework
