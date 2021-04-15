@@ -29,7 +29,7 @@ endif()
 # ======= VARIABLES FOR CMAKE -D{VAR}=VAL CONFIGURATION END =======
 
 # =============== VARIABLES FOR MANUAL CHANGE BEGIN ===============
-set(UNIX_LIBS mesatee_sdk protected_fs_rs)
+set(UNIX_LIBS sdk protected_fs_rs)
 # ================ VARIABLES FOR MANUAL CHANGE END ================
 
 # UNIX_APPS, SGX_APPS and SGX_LIBS are parsed from corresponding toml files
@@ -107,8 +107,8 @@ foreach(_i RANGE ${SGX_LIB_LAST_INDEX})
 endforeach()
 
 # MesaTEE C SDK
-add_cargo_build_dylib_target(mesatee_sdk_c
-    TARGET_NAME "${UNIXLIB_PREFIX}-mesatee_sdk_c"
+add_cargo_build_dylib_target(sdk_c
+    TARGET_NAME "${UNIXLIB_PREFIX}-sdk_c"
     TOML_DIR ${MT_UNIX_TOML_DIR}
     TARGET_DIR ${UNIX_TARGET_DIR}
     DEPENDS prep
