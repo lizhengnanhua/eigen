@@ -16,12 +16,12 @@
 // under the License.
 
 // Insert std prelude in the top for the sgx feature
-#[cfg(feature = "eigen_sgx")]
+#[cfg(feature = "mesalock_sgx")]
 use std::prelude::v1::*;
 
-use core::prelude::*;
-use core::rpc::server::SgxTrustedServer;
-use core::Result;
+use eigen_core::prelude::*;
+use eigen_core::rpc::server::SgxTrustedServer;
+use eigen_core::Result;
 
 use crate::fns::FNSEnclave;
 use crate::global::register_trusted_worker_statically;
@@ -35,7 +35,7 @@ register_ecall_handler!(
 
 #[handle_ecall]
 fn handle_init_enclave(_args: &InitEnclaveInput) -> Result<InitEnclaveOutput> {
-    core::init_service(env!("CARGO_PKG_NAME"))?;
+    eigen_core::init_service(env!("CARGO_PKG_NAME"))?;
 
     register_trusted_worker_statically();
     Ok(InitEnclaveOutput::default())

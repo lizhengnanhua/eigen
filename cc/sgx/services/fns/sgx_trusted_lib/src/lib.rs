@@ -15,8 +15,8 @@
 // specific language governing permissions and limitations
 // under the License.
 #![feature(asm)]
-#![cfg_attr(feature = "eigen_sgx", no_std)]
-#[cfg(feature = "eigen_sgx")]
+#![cfg_attr(feature = "mesalock_sgx", no_std)]
+#[cfg(feature = "mesalock_sgx")]
 extern crate sgx_tstd as std;
 
 #[macro_use]
@@ -29,7 +29,7 @@ mod worker;
 
 use cfg_if::cfg_if;
 cfg_if! {
-    if #[cfg(feature = "eigen_sgx")]  {
+    if #[cfg(feature = "mesalock_sgx")]  {
         mod sgx;
     } else {
     }

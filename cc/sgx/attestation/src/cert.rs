@@ -4,7 +4,7 @@
     clippy::redundant_closure
 )]
 // Insert std prelude in the top for the sgx feature
-#[cfg(feature = "eigen_sgx")]
+#[cfg(feature = "mesalock_sgx")]
 use std::prelude::v1::*;
 
 use yasna::ASN1Result;
@@ -351,7 +351,7 @@ macro_rules! asn1_set_ty {
     };
 }
 
-#[cfg(feature = "eigen_sgx")]
+#[cfg(feature = "mesalock_sgx")]
 macro_rules! asn1_seq {
     () => { () };
     ($e: expr) => {

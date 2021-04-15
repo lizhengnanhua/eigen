@@ -18,9 +18,9 @@
 #[macro_use]
 extern crate log;
 
-use core::ipc::protos::ecall::{RunUnitTestInput, RunUnitTestOutput};
-use core::prelude::*;
-use core::Result;
+use eigen_core::ipc::protos::ecall::{RunUnitTestInput, RunUnitTestOutput};
+use eigen_core::prelude::*;
+use eigen_core::Result;
 
 #[macro_use]
 mod unittest;
@@ -42,7 +42,7 @@ fn run_test_in_tee(tee: &TeeBinder) -> Result<()> {
 
 fn test_from_unstrusted() {
     unit_tests!(
-        core::tests::test_error,
+        eigen_core::tests::test_error,
         config::tests::test_runtime_config,
         config::tests::test_build_config,
     );

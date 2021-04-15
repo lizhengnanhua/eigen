@@ -18,8 +18,8 @@
 #[macro_use]
 extern crate log;
 
-use core::prelude::*;
-use core::Result;
+use eigen_core::prelude::*;
+use eigen_core::Result;
 
 use std::net::TcpListener;
 use std::net::{IpAddr, Ipv4Addr, SocketAddr};

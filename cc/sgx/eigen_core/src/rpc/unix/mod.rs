@@ -27,7 +27,7 @@ use std::marker::PhantomData;
 use std::net::TcpStream;
 
 use crate::rpc::{EnclaveService, RpcClient, RpcServer};
-#[cfg(not(feature = "eigen_sgx"))]
+#[cfg(not(feature = "mesalock_sgx"))]
 use std::os::unix::io::FromRawFd;
 
 use crate::Result;
@@ -117,9 +117,9 @@ where
     // The SGX version takes a fd as a input and return an `Option`.
     fn start(config: &Self::Config) -> Result<Self> {
         Ok(Pipe {
-            #[cfg(feature = "eigen_sgx")]
+            #[cfg(feature = "mesalock_sgx")]
             inner: TcpStream::new(config.get())?,
-            #[cfg(not(feature = "eigen_sgx"))]
+            #[cfg(not(feature = "mesalock_sgx"))]
             inner: unsafe { TcpStream::from_raw_fd(config.get()) },
             u: PhantomData::<U>,
             v: PhantomData::<V>,
@@ -161,9 +161,9 @@ where
 
     fn open(config: Self::Config) -> Result<Self> {
         Ok(PipeClient {
-            #[cfg(feature = "eigen_sgx")]
+            #[cfg(feature = "mesalock_sgx")]
             inner: TcpStream::new(config.get())?,
-            #[cfg(not(feature = "eigen_sgx"))]
+            #[cfg(not(feature = "mesalock_sgx"))]
             inner: unsafe { TcpStream::from_raw_fd(config.get()) },
             u: PhantomData::<U>,
             v: PhantomData::<V>,

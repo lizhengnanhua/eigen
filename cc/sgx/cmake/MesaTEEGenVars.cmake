@@ -49,7 +49,7 @@ else()
 	set(Service_Library_Name sgx_tservice)
 endif()
 
-set(SGX_ENCLAVE_FEATURES -Z package-features --features eigen_sgx)
+set(SGX_ENCLAVE_FEATURES -Z package-features --features mesalock_sgx)
 string(TOLOWER "${CMAKE_BUILD_TYPE}" CMAKE_BUILD_TYPE_LOWER)
 if (CMAKE_BUILD_TYPE_LOWER STREQUAL "debug")
     set(TARGET debug)
@@ -57,7 +57,7 @@ if (CMAKE_BUILD_TYPE_LOWER STREQUAL "debug")
 
     if (COV)
         check_exe_dependencies(lcov llvm-cov)
-        set(SGX_ENCLAVE_FEATURES -Z package-features --features "eigen_sgx cov")
+        set(SGX_ENCLAVE_FEATURES -Z package-features --features "mesalock_sgx cov")
         set(CARGO_INCREMENTAL 0)
         set(RUSTFLAGS "${RUSTFLAGS} -D warnings -Zprofile -Ccodegen-units=1 \
 -Cllvm_args=-inline-threshold=0 -Coverflow-checks=off -Zno-landing-pads")

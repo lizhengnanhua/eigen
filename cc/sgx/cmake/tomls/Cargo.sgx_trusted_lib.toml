@@ -6,11 +6,11 @@ members = [
 ]
 
 exclude = [
-  "core",
+  "eigen_core",
 ]
 
 [patch.crates-io]
-core      = { path = "./core" }
+eigen_core      = { path = "./eigen_core" }
 
 # Rust SGX SDK
 sgx_alloc         = { git = "https://github.com/apache/teaclave-sgx-sdk", rev = "v1.1.2" }

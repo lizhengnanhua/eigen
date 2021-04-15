@@ -11,12 +11,12 @@ crate-type = ["staticlib"]
 
 [features]
 default = []
-eigen_sgx = [
+mesalock_sgx = [
   "sgx_tstd",
-  "core/eigen_sgx",
+  "eigen_core/mesalock_sgx",
   "sgx_tunittest",
-  "attestation/eigen_sgx",
-  "attestation/unit_test",
+  "attestation/mesalock_sgx",
+  "attestation/eigen_unit_test",
 ]
 cov = ["sgx_cov"]
 
@@ -25,7 +25,7 @@ cfg-if          = { version = "0.1.9" }
 log             = { version = "0.4.6" }
 env_logger      = { version = "0.7.1" }
 
-core    = { path = "../../../core" }
+eigen_core    = { path = "../../../eigen_core" }
 config = { path = "../../../config" }
 attestation = { path = "../../../attestation" }
 sgx_tstd        = { version = "1.1.2", features = ["net", "backtrace"], optional = true }

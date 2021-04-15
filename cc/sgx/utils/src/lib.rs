@@ -1,7 +1,7 @@
-#![cfg_attr(feature = "eigen_sgx", no_std)]
-#[cfg(feature = "eigen_sgx")]
+#![cfg_attr(feature = "mesalock_sgx", no_std)]
+#[cfg(feature = "mesalock_sgx")]
 extern crate sgx_tstd as std;
-#[cfg(feature = "eigen_sgx")]
+#[cfg(feature = "mesalock_sgx")]
 use std::prelude::v1::*;
 
 use serde::Deserializer;

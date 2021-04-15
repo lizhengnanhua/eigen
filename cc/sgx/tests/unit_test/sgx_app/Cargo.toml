@@ -9,13 +9,13 @@ edition = "2018"
 [features]
 default = [
   "config/eigen_unit_test",
-  "core/eigen_unit_test",
+  "eigen_core/eigen_unit_test",
 ]
 
 [dependencies]
 sgx_types       = "1.1.0"
 sgx_urts        = "1.1.0"
-core    = { path = "../../../core" }
+eigen_core    = { path = "../../../eigen_core" }
 binder = { path = "../../../binder" }
 config = { path = "../../../config" }
 ctrlc           = "3.1.2"

@@ -1,6 +1,6 @@
 // Use sgx_tstd to replace Rust's default std
-#![cfg_attr(feature = "eigen_sgx", no_std)]
-#[cfg(feature = "eigen_sgx")]
+#![cfg_attr(feature = "mesalock_sgx", no_std)]
+#[cfg(feature = "mesalock_sgx")]
 #[macro_use]
 extern crate sgx_tstd as std;
 #[macro_use]
@@ -14,11 +14,11 @@ pub mod build_config {
 }
 
 pub mod runtime_config {
-    #[cfg(not(feature = "eigen_sgx"))]
+    #[cfg(not(feature = "mesalock_sgx"))]
     use std::fs;
-    #[cfg(feature = "eigen_sgx")]
+    #[cfg(feature = "mesalock_sgx")]
     use std::prelude::v1::*;
-    #[cfg(feature = "eigen_sgx")]
+    #[cfg(feature = "mesalock_sgx")]
     use std::untrusted::fs;
 
     use serde_derive::Deserialize;

@@ -78,14 +78,14 @@ impl MesaTEEServiceGenerator {
         buf.push_str(LINE_ENDING);
         for method in &service.methods {
             buf.push_str(&format!(
-                "    fn {}(req: {}) -> core::Result<{}>;",
+                "    fn {}(req: {}) -> eigen_core::Result<{}>;",
                 method.name, method.input_type, method.output_type
             ));
             buf.push_str(LINE_ENDING);
         }
         // Generate dispatch
         buf.push_str(&format!(
-            "    fn dispatch(&self, req: {}) -> core::Result<{}> {{",
+            "    fn dispatch(&self, req: {}) -> eigen_core::Result<{}> {{",
             &request_name, &response_name
         ));
         buf.push_str(LINE_ENDING);
@@ -111,7 +111,7 @@ impl MesaTEEServiceGenerator {
             buf.push_str(
                 r#"
         if !authenticated {
-            return Err(core::Error::from(core::ErrorKind::PermissionDenied));
+            return Err(eigen_core::Error::from(eigen_core::ErrorKind::PermissionDenied));
         }
 "#,
             )
@@ -141,7 +141,7 @@ impl MesaTEEServiceGenerator {
         buf.push_str(&format!("pub struct {} {{", &client_name));
         buf.push_str(LINE_ENDING);
         buf.push_str(&format!(
-            "    channel: core::rpc::channel::SgxTrustedChannel<{}, {}>,",
+            "    channel: eigen_core::rpc::channel::SgxTrustedChannel<{}, {}>,",
             request_name, response_name
         ));
         buf.push_str(LINE_ENDING);
@@ -152,11 +152,11 @@ impl MesaTEEServiceGenerator {
         buf.push_str(&format!(
             r#"
 impl {} {{
-    pub fn new(target: core::config::TargetDesc) -> core::Result<Self> {{
+    pub fn new(target: eigen_core::config::TargetDesc) -> eigen_core::Result<Self> {{
         let addr = target.addr;
         let channel = match target.desc {{
-            core::config::OutboundDesc::Sgx(enclave_addr) => {{
-                core::rpc::channel::SgxTrustedChannel::<{}, {}>::new(addr, enclave_addr)?
+            eigen_core::config::OutboundDesc::Sgx(enclave_addr) => {{
+                eigen_core::rpc::channel::SgxTrustedChannel::<{}, {}>::new(addr, enclave_addr)?
             }}
         }};
         Ok({} {{ channel }})
@@ -171,12 +171,12 @@ impl {} {{
         for method in &service.methods {
             buf.push_str(&format!(
                 r#"
-    pub fn {}(&mut self, req: {}) -> core::Result<{}> {{
+    pub fn {}(&mut self, req: {}) -> eigen_core::Result<{}> {{
         let req = {}::{}(req);
         let resp = self.channel.invoke(req)?;
         match resp {{
             {}::{}(resp) => Ok(resp),
-            _ => Err(core::Error::from(core::ErrorKind::RPCResponseError)),
+            _ => Err(eigen_core::Error::from(eigen_core::ErrorKind::RPCResponseError)),
         }}
     }}
 "#,

@@ -11,7 +11,7 @@ crate-type = ["staticlib"]
 
 [features]
 default = []
-eigen_sgx = ["sgx_tstd", "core/eigen_sgx", "fns_proto/eigen_sgx"]
+mesalock_sgx = ["sgx_tstd", "eigen_core/mesalock_sgx", "fns_proto/mesalock_sgx"]
 cov = ["sgx_cov"]
 
 [dependencies]
@@ -46,6 +46,6 @@ prost       = { version = "0.6.0" }
 prost-types = { version = "0.6.0" }
 
 
-core         = { path = "../../../core" }
+eigen_core         = { path = "../../../eigen_core" }
 utils       = { path = "../../../utils" }
 config      = { path = "../../../config" }

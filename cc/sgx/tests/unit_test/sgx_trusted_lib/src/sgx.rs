@@ -15,12 +15,12 @@
 // specific language governing permissions and limitations
 // under the License.
 
-#[cfg(feature = "eigen_sgx")]
+#[cfg(feature = "mesalock_sgx")]
 use std::prelude::v1::*;
 
-use core::ipc::protos::ecall::{RunUnitTestInput, RunUnitTestOutput};
-use core::prelude::*;
-use core::Result;
+use eigen_core::ipc::protos::ecall::{RunUnitTestInput, RunUnitTestOutput};
+use eigen_core::prelude::*;
+use eigen_core::Result;
 
 use sgx_tunittest::*;
 
@@ -43,7 +43,7 @@ fn handle_run_unit_test(_args: &RunUnitTestInput) -> Result<RunUnitTestOutput> {
 
 #[handle_ecall]
 fn handle_init_enclave(_args: &InitEnclaveInput) -> Result<InitEnclaveOutput> {
-    core::init_service(env!("CARGO_PKG_NAME"))?;
+    eigen_core::init_service(env!("CARGO_PKG_NAME"))?;
     Ok(InitEnclaveOutput::default())
 }
 

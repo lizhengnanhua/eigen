@@ -7,7 +7,7 @@ edition = "2018"
 
 [features]
 default = []
-eigen_sgx = ["sgx_tstd"]
+mesalock_sgx = ["sgx_tstd"]
 
 [dependencies]
 ring         = { version = "0.16.5" }

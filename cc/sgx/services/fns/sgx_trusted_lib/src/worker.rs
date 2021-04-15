@@ -14,12 +14,12 @@
 // KIND, either express or implied.  See the License for the
 // specific language governing permissions and limitations
 // under the License.
-use core::{Error, ErrorKind, Result};
+use eigen_core::{Error, ErrorKind, Result};
 use lazy_static::lazy_static;
 use std::collections::{HashMap, HashSet};
-#[cfg(feature = "eigen_sgx")]
+#[cfg(feature = "mesalock_sgx")]
 use std::prelude::v1::*;
-#[cfg(feature = "eigen_sgx")]
+#[cfg(feature = "mesalock_sgx")]
 use std::sync::SgxRwLock as RwLock;
 
 pub struct WorkerContext {

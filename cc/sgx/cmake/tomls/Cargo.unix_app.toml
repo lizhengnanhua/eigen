@@ -11,12 +11,12 @@ members = [
 ]
 
 exclude = [
-  "core",
+  "eigen_core",
 ]
 
 [patch.crates-io]
-# core
-core = { path = "./core" }
+# eigen_core
+eigen_core = { path = "./eigen_core" }
 sdk = { path = "./sdk" }
 
 # We cannot remove these crates, because proto crates depend on them

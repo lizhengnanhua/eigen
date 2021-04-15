@@ -18,7 +18,7 @@
 #![allow(clippy::redundant_closure)]
 
 // Insert std prelude in the top for the sgx feature
-#[cfg(feature = "eigen_sgx")]
+#[cfg(feature = "mesalock_sgx")]
 use std::prelude::v1::*;
 
 use anyhow::{Error, Result};
@@ -30,7 +30,7 @@ use std::convert::TryFrom;
 use std::io::BufReader;
 use std::time::*;
 
-#[cfg(feature = "eigen_sgx")]
+#[cfg(feature = "mesalock_sgx")]
 use std::untrusted::time::SystemTimeEx;
 
 use uuid::Uuid;

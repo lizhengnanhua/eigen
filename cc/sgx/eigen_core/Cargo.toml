@@ -11,7 +11,7 @@ path = "src/lib.rs"
 
 [features]
 default = []
-eigen_sgx = ["sgx_tstd", "sgx_tcrypto", "sgx_rand", "sgx_tse", "ipc", "config/eigen_sgx", "utils/eigen_sgx", "attestation/eigen_sgx"]
+mesalock_sgx = ["sgx_tstd", "sgx_tcrypto", "sgx_rand", "sgx_tse", "ipc", "config/mesalock_sgx", "utils/mesalock_sgx", "attestation/mesalock_sgx"]
 ipc = []
 eigen_unit_test = []
 

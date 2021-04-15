@@ -15,7 +15,7 @@
 // specific language governing permissions and limitations
 // under the License.
 
-use core::{Error, ErrorKind};
+use eigen_core::{Error, ErrorKind};
 use libc::c_int;
 use log::error;
 

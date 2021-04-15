@@ -15,11 +15,11 @@
 // specific language governing permissions and limitations
 // under the License.
 
-#![cfg_attr(feature = "eigen_sgx", no_std)]
+#![cfg_attr(feature = "mesalock_sgx", no_std)]
 
 use cfg_if::cfg_if;
 cfg_if! {
-    if #[cfg(feature = "eigen_sgx")]  {
+    if #[cfg(feature = "mesalock_sgx")]  {
         extern crate sgx_tstd as std;
         #[cfg(feature = "cov")]
         extern crate sgx_cov;

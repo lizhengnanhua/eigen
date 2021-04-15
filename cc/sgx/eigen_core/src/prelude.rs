@@ -18,7 +18,7 @@
 use cfg_if::cfg_if;
 
 cfg_if! {
-    if #[cfg(all(feature = "eigen_sgx", feature = "ipc"))] {
+    if #[cfg(all(feature = "mesalock_sgx", feature = "ipc"))] {
         // preludes provided for SGX enclave.
         pub use crate::register_ecall_handler;
         pub use crate::rpc::{RpcServer, RpcClient, EnclaveService};
@@ -34,7 +34,7 @@ cfg_if! {
             ServeConnectionOutput,
         };
         pub use crate::ipc_attribute::handle_ecall;
-    } else if #[cfg(all(not(feature = "eigen_sgx"), feature = "ipc"))] {
+    } else if #[cfg(all(not(feature = "mesalock_sgx"), feature = "ipc"))] {
         // preludes provided for sgx_app
         pub use crate::ipc::protos::ECallCommand;
         pub use crate::ipc::protos::ecall::{
@@ -42,7 +42,7 @@ cfg_if! {
             ServeConnectionOutput,
         };
 
-    } else if #[cfg(all(not(feature = "eigen_sgx"), not(feature = "ipc")))] {
+    } else if #[cfg(all(not(feature = "mesalock_sgx"), not(feature = "ipc")))] {
         // preludes provided for unix app
     } else {
         // This should not happen!

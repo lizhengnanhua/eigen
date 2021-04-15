@@ -18,15 +18,15 @@
 #![feature(specialization)] // for mayfail
 
 // Use sgx_tstd to replace Rust's default std
-#![cfg_attr(feature = "eigen_sgx", no_std)]
-#[cfg(feature = "eigen_sgx")]
+#![cfg_attr(feature = "mesalock_sgx", no_std)]
+#[cfg(feature = "mesalock_sgx")]
 #[macro_use]
 extern crate sgx_tstd as std;
 
 #[macro_use]
 extern crate log;
 
-#[cfg(feature = "eigen_sgx")]
+#[cfg(feature = "mesalock_sgx")]
 extern crate ring;
 
 pub mod db;
@@ -53,7 +53,7 @@ pub use serde::Serialize;
 pub mod config;
 pub mod prelude;
 
-#[cfg(feature = "eigen_sgx")]
+#[cfg(feature = "mesalock_sgx")]
 pub fn init_service(name: &str) -> Result<()> {
     use std::backtrace;
     env_logger::init();

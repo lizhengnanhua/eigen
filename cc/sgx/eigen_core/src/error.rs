@@ -16,7 +16,7 @@
 // under the License.
 
 // Insert std prelude in the top for the sgx feature
-#[cfg(feature = "eigen_sgx")]
+#[cfg(feature = "mesalock_sgx")]
 use std::prelude::v1::*;
 
 use std::fmt;
@@ -137,8 +137,8 @@ pub enum ErrorKind {
     NoValidWorkerError,
     /// RPC Message size excceds the limit
     MsgSizeLimitExceedError,
-    /// Unhandled MesaPy exception encountered
-    MesaPyError,
+    /// Unhandled Py exception encountered
+    PyError,
     /// RPC input/output is invalid.
     RpcProtocolError,
     /// Others.
@@ -266,7 +266,7 @@ impl From<u32> for Error {
             0x0000_1011 => ErrorKind::IASClientKeyCertError,
             0x0000_1012 => ErrorKind::NoValidWorkerError,
             0x0000_1013 => ErrorKind::MsgSizeLimitExceedError,
-            0x0000_1014 => ErrorKind::MesaPyError,
+            0x0000_1014 => ErrorKind::PyError,
             0x0000_1015 => ErrorKind::RpcProtocolError,
             _ => ErrorKind::Unknown,
         };
@@ -315,7 +315,7 @@ impl Into<u32> for Error {
             ErrorKind::IASClientKeyCertError => 0x0000_1011,
             ErrorKind::NoValidWorkerError => 0x0000_1012,
             ErrorKind::MsgSizeLimitExceedError => 0x0000_1013,
-            ErrorKind::MesaPyError => 0x0000_1014,
+            ErrorKind::PyError => 0x0000_1014,
             ErrorKind::RpcProtocolError => 0x0000_1015,
             ErrorKind::Unknown => 0xffff_ffff,
         }

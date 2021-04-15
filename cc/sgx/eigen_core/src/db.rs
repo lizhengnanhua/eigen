@@ -16,14 +16,14 @@
 // under the License.
 
 // Insert std prelude in the top for the sgx feature
-#[cfg(feature = "eigen_sgx")]
+#[cfg(feature = "mesalock_sgx")]
 use std::prelude::v1::*;
 
 use cfg_if::cfg_if;
 
 // Use target specific definitions here
 cfg_if! {
-    if #[cfg(feature = "eigen_sgx")]  {
+    if #[cfg(feature = "mesalock_sgx")]  {
         use std::sync::SgxRwLock as RwLock;
     } else {
         use std::sync::RwLock;

@@ -199,7 +199,7 @@ impl IasReport {
     }
 }
 
-#[cfg(all(feature = "eigen_unit_test", feature = "eigen_sgx"))]
+#[cfg(all(feature = "eigen_unit_test", feature = "mesalock_sgx"))]
 pub mod tests {
     use super::*;
     use crate::key;

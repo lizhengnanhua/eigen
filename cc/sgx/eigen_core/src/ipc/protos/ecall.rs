@@ -22,7 +22,7 @@ use serde_derive::{Deserialize, Serialize};
 
 // Use target specific definitions here
 cfg_if! {
-    if #[cfg(feature = "eigen_sgx")]  {
+    if #[cfg(feature = "mesalock_sgx")]  {
         use sgx_types::c_int;
     } else {
         use std::os::raw::c_int;

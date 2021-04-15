@@ -16,11 +16,11 @@
 // under the License.
 
 // Insert std prelude in the top for the sgx feature
-#[cfg(feature = "eigen_sgx")]
+#[cfg(feature = "mesalock_sgx")]
 use std::prelude::v1::*;
 
 use crate::worker::{Worker, WorkerContext};
-use core::{Error, ErrorKind, Result};
+use eigen_core::{Error, ErrorKind, Result};
 
 pub struct EchoWorker {
     worker_id: u32,

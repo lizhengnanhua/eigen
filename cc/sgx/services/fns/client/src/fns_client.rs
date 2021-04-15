@@ -16,12 +16,12 @@
 // under the License.
 
 // Insert std prelude in the top for the sgx feature
-#[cfg(feature = "eigen_sgx")]
+#[cfg(feature = "mesalock_sgx")]
 use std::prelude::v1::*;
 
-use core::config::{OutboundDesc, TargetDesc};
-use core::rpc::channel::SgxTrustedChannel;
-use core::Result;
+use eigen_core::config::{OutboundDesc, TargetDesc};
+use eigen_core::rpc::channel::SgxTrustedChannel;
+use eigen_core::Result;
 use fns_proto::{InvokeTaskRequest, InvokeTaskResponse};
 
 pub struct FNSClient {

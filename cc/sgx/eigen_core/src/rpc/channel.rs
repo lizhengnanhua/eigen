@@ -16,7 +16,7 @@
 // under the License.
 
 // Use sgx_tstd to replace Rust's default std
-#[cfg(feature = "eigen_sgx")]
+#[cfg(feature = "mesalock_sgx")]
 use std::prelude::v1::*;
 
 use crate::rpc::sgx;

@@ -29,7 +29,7 @@ find . \( -name "*.gcda" -and \( ! -name "sgx_cov*" \
     -and ! -name "neural_net*"\
     -and ! -name "naive_bayes*"\
     -and ! -name "gbdt*"\
-    -and ! -name "core*" -and ! -name "config*" \) \) \
+    -and ! -name "eigen_core*" -and ! -name "config*" \) \) \
     -exec rm {} \;
 cd ${MESATEE_PROJECT_ROOT} && \
     for tag in `find ${MESATEE_PROJECT_ROOT} -name sgx_cov*.gcda | cut -d'.' -f2`; \

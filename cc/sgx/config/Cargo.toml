@@ -7,7 +7,7 @@ edition = "2018"
 
 [features]
 default = []
-eigen_sgx = ["sgx_tstd"]
+mesalock_sgx = ["sgx_tstd"]
 eigen_unit_test = []
 
 [dependencies]

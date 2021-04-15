@@ -18,7 +18,7 @@
 //! rpc support for MesaTEE
 
 // Insert std prelude in the top for the sgx feature
-#[cfg(feature = "eigen_sgx")]
+#[cfg(feature = "mesalock_sgx")]
 use std::prelude::v1::*;
 
 use crate::{Error, ErrorKind, Result};
@@ -125,10 +125,10 @@ where
 // TODO: update the following two cfgs if we have a full version sgx rpc
 // It seems that the current sgx examples are also dependent on mod unix,
 // and thus I choose enable this mode either unix and sgx setting.
-// Please reivse this later if we have a dedicated rpc for eigen_sgx.
+// Please reivse this later if we have a dedicated rpc for mesalock_sgx.
 
 pub mod channel;
-#[cfg(feature = "eigen_sgx")]
+#[cfg(feature = "mesalock_sgx")]
 pub mod server;
 
 pub mod sgx;

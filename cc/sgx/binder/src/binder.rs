@@ -4,12 +4,12 @@ use sgx_urts::SgxEnclave;
 use serde::de::DeserializeOwned;
 use serde::Serialize;
 
-use core::ipc::channel::ECallChannel;
-use core::ipc::protos::ecall::{FinalizeEnclaveInput, FinalizeEnclaveOutput};
-use core::ipc::protos::ecall::{InitEnclaveInput, InitEnclaveOutput};
-use core::ipc::protos::ECallCommand;
-use core::ipc::IpcSender;
-use core::Result;
+use eigen_core::ipc::channel::ECallChannel;
+use eigen_core::ipc::protos::ecall::{FinalizeEnclaveInput, FinalizeEnclaveOutput};
+use eigen_core::ipc::protos::ecall::{InitEnclaveInput, InitEnclaveOutput};
+use eigen_core::ipc::protos::ECallCommand;
+use eigen_core::ipc::IpcSender;
+use eigen_core::Result;
 
 static ENCLAVE_FILE_SUFFIX: &str = "_enclave.signed.so";
 

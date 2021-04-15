@@ -1,5 +1,5 @@
-use core::config::{OutboundDesc, TargetDesc};
-pub use core::{Error, ErrorKind, Result};
+use eigen_core::config::{OutboundDesc, TargetDesc};
+pub use eigen_core::{Error, ErrorKind, Result};
 use fns_client::FNSClient;
 use std::fs;
 use std::net::SocketAddr;

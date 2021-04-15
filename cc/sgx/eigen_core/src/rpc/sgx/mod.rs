@@ -19,17 +19,17 @@
 
 // Insert std prelude in the top for the sgx feature
 use serde::{de::DeserializeOwned, Serialize};
-#[cfg(feature = "eigen_sgx")]
+#[cfg(feature = "mesalock_sgx")]
 use sgx_types::c_int;
 use std::io::{self, Read, Write};
 use std::marker::PhantomData;
 use std::net::TcpStream;
 use std::sync::Arc;
 
-#[cfg(feature = "eigen_sgx")]
+#[cfg(feature = "mesalock_sgx")]
 use std::prelude::v1::*;
 
-#[cfg(feature = "eigen_sgx")]
+#[cfg(feature = "mesalock_sgx")]
 use crate::rpc::{EnclaveService, RpcServer};
 
 use crate::rpc::RpcClient;
@@ -39,28 +39,28 @@ use attestation;
 use attestation::verifier::SgxQuoteVerifier;
 
 pub mod client;
-#[cfg(feature = "eigen_sgx")]
+#[cfg(feature = "mesalock_sgx")]
 pub mod server;
 
-#[cfg(feature = "eigen_sgx")]
+#[cfg(feature = "mesalock_sgx")]
 mod ra;
 
 // Export this function for sgx enclave initialization
-#[cfg(feature = "eigen_sgx")]
+#[cfg(feature = "mesalock_sgx")]
 pub fn prelude() -> Result<()> {
     // Hard coded RACredential validity in seconds for all enclave.
     // We may allow each enclave to setup its own validity in the future.
     ra::init_ra_credential(86400u64)
 }
 
-#[cfg(feature = "eigen_sgx")]
+#[cfg(feature = "mesalock_sgx")]
 pub struct PipeConfig {
     pub fd: c_int,
     // the SGX server can optionally verify the identity of the client
     pub client_verifier: Option<SgxQuoteVerifier>,
 }
 
-#[cfg(feature = "eigen_sgx")]
+#[cfg(feature = "mesalock_sgx")]
 pub struct Pipe<U, V, X> {
     inner: rustls::StreamOwned<rustls::ServerSession, TcpStream>,
     u: PhantomData<U>,
@@ -68,14 +68,14 @@ pub struct Pipe<U, V, X> {
     x: PhantomData<X>,
 }
 
-#[cfg(feature = "eigen_sgx")]
+#[cfg(feature = "mesalock_sgx")]
 impl<U, V, X> Read for Pipe<U, V, X> {
     fn read(&mut self, buf: &mut [u8]) -> io::Result<usize> {
         self.inner.read(buf)
     }
 }
 
-#[cfg(feature = "eigen_sgx")]
+#[cfg(feature = "mesalock_sgx")]
 impl<U, V, X> Write for Pipe<U, V, X> {
     fn write(&mut self, buf: &[u8]) -> io::Result<usize> {
         self.inner.write(buf)
@@ -86,7 +86,7 @@ impl<U, V, X> Write for Pipe<U, V, X> {
     }
 }
 
-#[cfg(feature = "eigen_sgx")]
+#[cfg(feature = "mesalock_sgx")]
 impl<U, V, X> RpcServer<U, V, X> for Pipe<U, V, X>
 where
     U: DeserializeOwned + std::fmt::Debug,

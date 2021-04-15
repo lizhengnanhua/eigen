@@ -16,12 +16,12 @@
 // under the License.
 
 // Insert std prelude in the top for the sgx feature
-#[cfg(feature = "eigen_sgx")]
+#[cfg(feature = "mesalock_sgx")]
 use std::prelude::v1::*;
 
 use crate::worker::{Worker, WorkerContext, WorkerInfoQueue};
-use core::rpc::EnclaveService;
-use core::Result;
+use eigen_core::rpc::EnclaveService;
+use eigen_core::Result;
 use fns_proto::{InvokeTaskRequest, InvokeTaskResponse};
 use std::marker::PhantomData;
 
