@@ -16,7 +16,7 @@
 // under the License.
 
 use super::*;
-use eigen_sdk::MesateeEnclaveInfo;
+use sdk::MesateeEnclaveInfo;
 use libc::c_char;
 use std::{ffi, ptr};
 

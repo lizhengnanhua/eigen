@@ -1,5 +1,6 @@
 use sgx_types::*;
 use std::net::TcpStream;
+use std::os::unix::io::IntoRawFd;
 
 extern "C" {
     fn sgx_init_quote(

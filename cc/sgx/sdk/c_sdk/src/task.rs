@@ -16,7 +16,7 @@
 // under the License.
 
 use super::*;
-use eigen_sdk::{Mesatee, MesateeTask};
+use sdk::{Mesatee, MesateeTask};
 use libc::{c_char, c_uchar};
 use std::{ffi, ptr, slice, str};
 

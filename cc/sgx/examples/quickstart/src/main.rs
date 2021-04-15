@@ -18,7 +18,6 @@
 use lazy_static::lazy_static;
 use sdk::{Mesatee, MesateeEnclaveInfo};
 use std::net::SocketAddr;
-use std::path;
 use std::path::PathBuf;
 use structopt::StructOpt;
 
