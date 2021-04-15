@@ -1,12 +1,12 @@
 [package]
-name = "core"
+name = "eigen_core"
 version = "0.1.0"
 description = "Core of EigenCC, including IPC/RPC/Error-handling/Database/etc."
 license = "Apache-2.0"
 edition = "2018"
 
 [lib]
-name = "core"
+name = "eigen_core"
 path = "src/lib.rs"
 
 [features]

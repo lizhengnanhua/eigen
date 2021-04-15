@@ -15,31 +15,31 @@
 // specific language governing permissions and limitations
 // under the License.
 
-// ATTN: Must bring `use core::ipc::IpcReceiver` into scope when use!!
+// ATTN: Must bring `use eigen_core::ipc::IpcReceiver` into scope when use!!
 #[macro_export]
 macro_rules! register_ecall_handler {
     ( type $cmd_type: ty, $( ($cmd: path, $arg: ty, $ret: ty), )* ) =>
     {
-        fn ecall_ipc_lib_dispatcher(cmd: u32, input: &[u8]) -> core::Result<Vec<u8>> {
+        fn ecall_ipc_lib_dispatcher(cmd: u32, input: &[u8]) -> eigen_core::Result<Vec<u8>> {
             let cmd = <$cmd_type>::from(cmd);
             match cmd {
                 $(
                     $cmd => dispatch_helper::<$arg, $ret>(input),
                 )*
-                _ => return Err(core::Error::from(core::ErrorKind::ECallCommandNotRegistered)),
+                _ => return Err(eigen_core::Error::from(eigen_core::ErrorKind::ECallCommandNotRegistered)),
             }
         }
 
         // Declear a local trait, the [handle_ecall] attribute macro
         // will help implement this trait and call user defined function.
         trait HandleRequest<V> {
-            fn handle(&self) -> core::Result<V>;
+            fn handle(&self) -> eigen_core::Result<V>;
         }
 
         struct ServeInstance<U, V>
         where
-            U: HandleRequest<V> + core::DeserializeOwned,
-            V: core::Serialize,
+            U: HandleRequest<V> + eigen_core::DeserializeOwned,
+            V: eigen_core::Serialize,
         {
             u: std::marker::PhantomData<U>,
             v: std::marker::PhantomData<V>,
@@ -47,8 +47,8 @@ macro_rules! register_ecall_handler {
 
         impl<U, V> ServeInstance<U, V>
         where
-            U: HandleRequest<V> + core::DeserializeOwned,
-            V: core::Serialize,
+            U: HandleRequest<V> + eigen_core::DeserializeOwned,
+            V: eigen_core::Serialize,
         {
             fn new() -> ServeInstance<U, V> {
                 ServeInstance {
@@ -58,23 +58,23 @@ macro_rules! register_ecall_handler {
             }
         }
 
-        impl<U, V> core::ipc::IpcService<U, V> for ServeInstance<U, V>
+        impl<U, V> eigen_core::ipc::IpcService<U, V> for ServeInstance<U, V>
         where
-            U: HandleRequest<V> + core::DeserializeOwned,
-            V: core::Serialize,
+            U: HandleRequest<V> + eigen_core::DeserializeOwned,
+            V: eigen_core::Serialize,
         {
-            fn handle_invoke(&self, input: U) -> core::Result<V> {
+            fn handle_invoke(&self, input: U) -> eigen_core::Result<V> {
                 input.handle()
             }
         }
 
-        fn dispatch_helper<U, V>(input: &[u8]) -> core::Result<Vec<u8>>
+        fn dispatch_helper<U, V>(input: &[u8]) -> eigen_core::Result<Vec<u8>>
         where
-            U: HandleRequest<V> + core::DeserializeOwned,
-            V: core::Serialize,
+            U: HandleRequest<V> + eigen_core::DeserializeOwned,
+            V: eigen_core::Serialize,
         {
             let instance = ServeInstance::<U, V>::new();
-            core::ipc::channel::ECallReceiver::dispatch(input, instance)
+            eigen_core::ipc::channel::ECallReceiver::dispatch(input, instance)
         }
 
         // The actual ecall funcation defined in .edl.
@@ -86,7 +86,7 @@ macro_rules! register_ecall_handler {
             out_buf: *mut u8,
             out_max: usize,
             out_len: &mut usize,
-        ) -> core::EnclaveStatus {
+        ) -> eigen_core::EnclaveStatus {
             // The last argument could be either * mut usize, or &mut usize
             let input_buf: &[u8] = unsafe { std::slice::from_raw_parts(in_buf, in_len) };
 
@@ -109,7 +109,7 @@ macro_rules! register_ecall_handler {
 
             if inner_len > out_max {
                 debug!("tee before copy out_buf check: out_max={:x} < inner={:x}", out_max, inner_len);
-                return core::Error::from(core::ErrorKind::FFICallerOutBufferTooSmall).into();
+                return eigen_core::Error::from(eigen_core::ErrorKind::FFICallerOutBufferTooSmall).into();
             }
 
             // you can use anything to fill out the output buf

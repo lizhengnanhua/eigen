@@ -48,7 +48,7 @@ cfg_if! {
         // This should not happen!
         #[deprecated(
             since = "0.0.0",
-            note = "core is being used in wrong feature combination!"
+            note = "eigen_core is being used in wrong feature combination!"
         )]
         fn something_bad_happens() {
             stop_the_compilation // Cannot compile!
