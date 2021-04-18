@@ -21,4 +21,7 @@ $ docker run --name fns --net=host -v$(pwd):/app -w /app -it teaclave/teaclave-b
 # ./fns
 ```
 
+### DCAP Enable
+TBD
+
 ## ARM TrustZone on FPGA 
