@@ -23,7 +23,5 @@ Build $IMAGE image by [Dockerfile](./sgx/dcap/Dockerfile)
 # ./fns
 ```
 
-### DCAP Enable
-TBD
 
 ## ARM TrustZone on FPGA 
