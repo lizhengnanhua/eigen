@@ -17,7 +17,7 @@ Build $IMAGE image by [Dockerfile](./sgx/dcap/Dockerfile)
 
 ### Run
 ```
-# cd /teaclave/release/services
+# cd /app/release/services
 # export IAS_SPID=xxxx
 # export IAS_KEY=xxx
 # ./fns
