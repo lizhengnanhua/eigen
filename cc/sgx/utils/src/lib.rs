@@ -22,13 +22,13 @@ pub enum UtilsError {
 
 impl fmt::Display for UtilsError {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        write!(f, "Teaclave utils error")
+        write!(f, "Eigen utils error")
     }
 }
 
 impl Error for UtilsError {
     fn description(&self) -> &str {
-        "Teaclave utils error"
+        "Eigen utils error"
     }
 }
 

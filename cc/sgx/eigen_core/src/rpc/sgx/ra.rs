@@ -148,7 +148,7 @@ impl RACredential {
         };
         let payload = [report.report, report.signature, report.signing_cert].join("|");
         let cert_der =
-            key_pair.create_cert_with_extension("Teaclave", "Teaclave", &payload.as_bytes());
+            key_pair.create_cert_with_extension("Eigen", "Eigen", &payload.as_bytes());
         let prv_key_der = key_pair.private_key_into_der();
         let sha256 = rsgx_sha256_slice(&prv_key_der)?;
 
