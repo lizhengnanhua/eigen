@@ -13,6 +13,8 @@ $ docker run --name fns --net=host -v$(pwd):/app -w /app -it teaclave/teaclave-b
 # cmake -DTEST_MODE=ON .. && make
 ```
 
+Build your image instead of `teaclave/teaclave-build-ubuntu-1804-sgx-2.9.1` by [Dockerfile](./sgx/dcap/Dockerfile)
+
 ### Run
 ```
 # cd /teaclave/release/services
