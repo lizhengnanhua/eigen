@@ -16,12 +16,15 @@ $ docker run --name fns --net=host -v$(pwd):/app -w /app -it $IMAGE bash
 Build $IMAGE image by [Dockerfile](./sgx/dcap/Dockerfile)
 
 ### Run
+
+use EPID:
 ```
 # cd /app/release/services
 # export IAS_SPID=xxxx
 # export IAS_KEY=xxx
 # ./fns
 ```
+use DCAP: TBD 
 
 
 ## ARM TrustZone on FPGA 
