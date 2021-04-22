@@ -24,7 +24,13 @@ use EPID:
 # export IAS_KEY=xxx
 # ./fns
 ```
-use DCAP: TBD 
+use DCAP: 
+
+```
+# cd release/dcap && ./eigen_dcap_server
+# eigen_tools 
+TBD
+```
 
 
 ## ARM TrustZone on FPGA 
