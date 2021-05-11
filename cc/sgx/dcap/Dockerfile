@@ -99,7 +99,7 @@ RUN apt-get update && apt-get install -q -y \
 RUN pip3 install pyopenssl toml cryptography yapf requests Pillow
 
 # enable oen way access
-sed -i 's/USE_SECURE_CERT=TRUE/USE_SECURE_CERT=FALSE/g' /etc/sgx_default_qcnl.conf
+RUN sed -i 's/USE_SECURE_CERT=TRUE/USE_SECURE_CERT=FALSE/g' /etc/sgx_default_qcnl.conf
 
 # clean up apt caches
 
